@@ -10,6 +10,8 @@ cmd-spoofing.exe "cmd.exe /c xxxxxxx" "cmd.exe /c notepad.exe"
 
 ![x](screenshot.png)
 
+**注意：本质执行的还是同一个程序，只不过是参数的不同而已，所以要避免出现这种参数：`cmd-spoofing.exe cmd.exe notepad.exe`。**
+
 ## 编译
 
 环境：Windows + VS2022 + CMake
