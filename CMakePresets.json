@@ -1,4 +1,4 @@
-﻿{
+{
     "version": 3,
     "configurePresets": [
         {
@@ -53,6 +53,42 @@
             "name": "x86-release",
             "displayName": "x86 Release",
             "inherits": "x86-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "mingw64-base",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
+                "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
+                "CMAKE_SYSTEM_NAME": "Windows",
+                "CMAKE_CXX_FLAGS": "-static",
+                "CMAKE_CXX_FLAGS_RELEASE": "-s",
+                "CMAKE_EXE_LINKER_FLAGS": "-static-libgcc -Wl,-Bstatic -lstdc++ -lpthread"
+            }
+        },
+        {
+            "name": "mingw64-debug",
+            "displayName": "x86_64-w64-mingw32-debug",
+            "inherits": "mingw64-base",
+            "description": "Using compilers: C = x86_64-w64-mingw32-gcc, CXX = x86_64-w64-mingw32-g++",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "mingw64-release",
+            "displayName": "x86_64-w64-mingw32-release",
+            "inherits": "mingw64-base",
+            "description": "Using compilers: C = x86_64-w64-mingw32-gcc, CXX = x86_64-w64-mingw32-g++",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }

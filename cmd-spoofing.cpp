@@ -1,4 +1,4 @@
-﻿// Copyright (c) SecurityResearcher. 2023. All rights reserved.
+// Copyright (c) SecurityResearcher. 2023. All rights reserved.
 // Author: REInject
 // Date: 2023-02-13
 
@@ -13,8 +13,10 @@ int main(int argc, char* argv[])
 		cout << "Usage: cmd-spoofing.exe \"cmd.exe /c xxxxxxx\" \"cmd.exe /c notepad.exe\"" << endl;
 		return 0;
 	}
-	wstring_convert<codecvt_utf8_utf16<WCHAR>> converter;
-	wstring new_cmdline = converter.from_bytes(argv[2]);
+	wstring new_cmdline;
+	new_cmdline.resize(strlen(argv[2]) + 2);
+	MultiByteToWideChar(CP_UTF8, 0, argv[2], strlen(argv[2]), (LPWSTR)new_cmdline.c_str(), new_cmdline.length());
+
 	string argue_cmdline = argv[1];
 	if (new_cmdline.length() > argue_cmdline.length())
 	{
